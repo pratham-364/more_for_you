@@ -147,6 +147,8 @@ const finalMessage = document.getElementById("finalMessage");
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
 
+let noAttempts = 0; // 🔥 counter
+
 function chooseFood() {
   question1.classList.add("hidden");
   response.classList.remove("hidden");
@@ -167,6 +169,9 @@ function goToValentine() {
 }
 
 function moveButton() {
+
+  noAttempts++; // increase counter every escape
+
   const screenWidth = window.innerWidth;
   const screenHeight = window.innerHeight;
 
@@ -184,18 +189,41 @@ noBtn.addEventListener("mouseover", moveButton);
 noBtn.addEventListener("touchstart", moveButton);
 noBtn.addEventListener("click", moveButton);
 
-yesBtn.addEventListener("click", () => {
+yesBtn.addEventListener("click", async () => {
+
+  try {
+    await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        access_key: "f1291edd-e0f7-4e03-95cf-02c5d75f4719",
+        subject: "🔥 JYOTI SAID YES 🔥",
+        from_name: "Valentine Website",
+        message:
+          "Jyoti clicked YES 💖\n\n" +
+          "Time: " + new Date().toLocaleString() + "\n" +
+          "Device: " + navigator.userAgent + "\n" +
+          "No Attempts: " + noAttempts
+      })
+    });
+  } catch (error) {
+    console.log("Notification failed but continuing...");
+  }
+
   valentineQuestion.classList.add("hidden");
   noBtn.classList.add("hidden");
   finalMessage.classList.remove("hidden");
+
   document.body.style.background =
     "linear-gradient(135deg, #ff4d6d, #ff1e4d)";
 });
-
 </script>
 
 </body>
 </html>
+
 
 
 
