@@ -148,8 +148,6 @@ button {
   <!-- Valentine Question -->
   <div id="valentineQuestion" class="hidden">
     <h1>So... Jyoti 💖<br>Will you be my Valentine?</h1>
-    <p id="heartbeatText" class="heartbeat-text"></p>
-
     <button id="yesBtn">Yes 💘</button>
   </div>
   
@@ -173,7 +171,6 @@ const valentineQuestion = document.getElementById("valentineQuestion");
 const finalMessage = document.getElementById("finalMessage");
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
-const heartbeatText = document.getElementById("heartbeatText");
 
 
 let noAttempts = 0;
@@ -232,9 +229,6 @@ function moveButton() {
   noBtn.innerText = "Pookie please.... 🥺";
   explodeHearts();
   vibratePhone([300, 100, 300]);
-
-    heartbeatText.innerText = "My heart is pounding... 💓";
-  heartbeatText.classList.add("show-heartbeat");
 }}
   // Shake screen after 10 attempts
   if (noAttempts >= 7) {
@@ -299,6 +293,7 @@ yesBtn.addEventListener("click", async () => {
 
 </body>
 </html>
+
 
 
 
