@@ -74,19 +74,6 @@ button {
   100% { transform: translate(0px, 0px); }
 }
 
-.heartbeat-text {
-  margin-top: 20px;
-  font-size: 18px;
-  color: #ff3366;
-  font-weight: bold;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.show-heartbeat {
-  opacity: 1;
-}
-
 .optionBtn:hover {
   transform: scale(1.1);
 }
@@ -211,11 +198,6 @@ function explodeHearts() {
   }
 }
 
-  function vibratePhone(pattern = [200]) {
-  if (navigator.vibrate) {
-    navigator.vibrate(pattern);
-  }
-}
 
 function moveButton() {
 
@@ -228,7 +210,6 @@ function moveButton() {
  if (noAttempts >= 10) {
   noBtn.innerText = "Pookie please.... 🥺";
   explodeHearts();
-  vibratePhone([300, 100, 300]);
 }}
   // Shake screen after 10 attempts
   if (noAttempts >= 7) {
@@ -293,6 +274,7 @@ yesBtn.addEventListener("click", async () => {
 
 </body>
 </html>
+
 
 
 
