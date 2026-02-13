@@ -181,23 +181,6 @@ function goToValentine() {
   moveButton();
 }
   
-function explodeHearts() {
-  for (let i = 0; i < 30; i++) {
-    const heart = document.createElement("div");
-    heart.innerText = "❤️";
-    heart.classList.add("heart");
-
-    heart.style.left = Math.random() * window.innerWidth + "px";
-    heart.style.top = Math.random() * window.innerHeight + "px";
-
-    document.body.appendChild(heart);
-
-    setTimeout(() => {
-      heart.remove();
-    }, 3000);
-  }
-}
-
 
 function moveButton() {
 
@@ -209,7 +192,6 @@ function moveButton() {
   }
  if (noAttempts >= 10) {
   noBtn.innerText = "Pookie please.... 🥺";
-  explodeHearts();
 }
   // Shake screen after 10 attempts
   if (noAttempts >= 7) {
@@ -274,6 +256,7 @@ yesBtn.addEventListener("click", async () => {
 
 </body>
 </html>
+
 
 
 
