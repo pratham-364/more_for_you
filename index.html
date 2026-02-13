@@ -65,6 +65,16 @@ button {
   color: white;
 }
 
+@keyframes shake {
+  0% { transform: translate(0px, 0px); }
+  20% { transform: translate(-5px, 5px); }
+  40% { transform: translate(-5px, -5px); }
+  60% { transform: translate(5px, 5px); }
+  80% { transform: translate(5px, -5px); }
+  100% { transform: translate(0px, 0px); }
+}
+
+
 .optionBtn:hover {
   transform: scale(1.1);
 }
@@ -178,7 +188,7 @@ function moveButton() {
   }
 
   // Shake screen after 10 attempts
-  if (noAttempts >= 10) {
+  if (noAttempts >= 7) {
     shakeScreen();
   }
 
@@ -240,6 +250,7 @@ yesBtn.addEventListener("click", async () => {
 
 </body>
 </html>
+
 
 
 
