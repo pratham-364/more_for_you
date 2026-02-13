@@ -74,6 +74,18 @@ button {
   100% { transform: translate(0px, 0px); }
 }
 
+.heartbeat-text {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #ff3366;
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.show-heartbeat {
+  opacity: 1;
+}
 
 .optionBtn:hover {
   transform: scale(1.1);
@@ -109,6 +121,8 @@ button {
   to {opacity:1; transform:scale(1);}
 }
 
+  
+
 </style>
 </head>
 
@@ -134,8 +148,11 @@ button {
   <!-- Valentine Question -->
   <div id="valentineQuestion" class="hidden">
     <h1>So... Jyoti 💖<br>Will you be my Valentine?</h1>
+    <p id="heartbeatText" class="heartbeat-text"></p>
+
     <button id="yesBtn">Yes 💘</button>
   </div>
+  
 
   <!-- Final Message -->
   <div id="finalMessage" class="hidden">
@@ -156,6 +173,8 @@ const valentineQuestion = document.getElementById("valentineQuestion");
 const finalMessage = document.getElementById("finalMessage");
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
+const heartbeatText = document.getElementById("heartbeatText");
+
 
 let noAttempts = 0;
 
@@ -177,6 +196,29 @@ function goToValentine() {
   noBtn.classList.remove("hidden");
   moveButton();
 }
+  
+function explodeHearts() {
+  for (let i = 0; i < 30; i++) {
+    const heart = document.createElement("div");
+    heart.innerText = "❤️";
+    heart.classList.add("heart");
+
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.top = Math.random() * window.innerHeight + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 3000);
+  }
+}
+
+  function vibratePhone(pattern = [200]) {
+  if (navigator.vibrate) {
+    navigator.vibrate(pattern);
+  }
+}
 
 function moveButton() {
 
@@ -186,7 +228,14 @@ function moveButton() {
   if (noAttempts >= 5) {
     noBtn.innerText = "Are you sure? 😏";
   }
+ if (noAttempts >= 10) {
+  noBtn.innerText = "Pookie please.... 🥺";
+  explodeHearts();
+  vibratePhone([300, 100, 300]);
 
+    heartbeatText.innerText = "My heart is pounding... 💓";
+  heartbeatText.classList.add("show-heartbeat");
+}}
   // Shake screen after 10 attempts
   if (noAttempts >= 7) {
     shakeScreen();
@@ -250,6 +299,7 @@ yesBtn.addEventListener("click", async () => {
 
 </body>
 </html>
+
 
 
 
