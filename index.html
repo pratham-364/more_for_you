@@ -147,7 +147,7 @@ const finalMessage = document.getElementById("finalMessage");
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
 
-let noAttempts = 0; // 🔥 counter
+let noAttempts = 0;
 
 function chooseFood() {
   question1.classList.add("hidden");
@@ -170,7 +170,17 @@ function goToValentine() {
 
 function moveButton() {
 
-  noAttempts++; // increase counter every escape
+  noAttempts++;
+
+  // Change text after 5 attempts
+  if (noAttempts >= 5) {
+    noBtn.innerText = "Are you sure? 😏";
+  }
+
+  // Shake screen after 10 attempts
+  if (noAttempts >= 10) {
+    shakeScreen();
+  }
 
   const screenWidth = window.innerWidth;
   const screenHeight = window.innerHeight;
@@ -183,6 +193,13 @@ function moveButton() {
 
   noBtn.style.left = randomX + "px";
   noBtn.style.top = randomY + "px";
+}
+
+function shakeScreen() {
+  document.body.style.animation = "shake 0.4s";
+  setTimeout(() => {
+    document.body.style.animation = "";
+  }, 400);
 }
 
 noBtn.addEventListener("mouseover", moveButton);
@@ -223,6 +240,7 @@ yesBtn.addEventListener("click", async () => {
 
 </body>
 </html>
+
 
 
 
